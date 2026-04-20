@@ -1,0 +1,16 @@
+numpy~=2.0.2
+pandas
+matplotlib
+seaborn
+scikit-learn
+
+joblib~=1.4.2
+fastapi~=0.136.0
+pydantic~=2.10.6
+uvicorn
+SQLAlchemy~=2.0.49
+psycopg2
+streamlit~=1.47.0
+dotenv~=0.9.9
+python-dotenv~=1.2.2
+requests~=2.32.3
