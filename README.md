@@ -23,3 +23,64 @@ Automated Logging: Every inference is automatically logged to the prediction_log
 Batch Migration: Includes a custom ETL script to handle bulk insertion of 300+ historical records into the database via SQLAlchemy and Pandas.
 
 Schema Enforcement: Strict data validation using Pydantic models to ensure inference quality and database consistency.
+
+### **EDUC**
+
+* **Years of education** completed
+* Often used as a proxy for *cognitive reserve* (higher education may delay symptom onset)
+
+---
+
+### **SES (Socioeconomic Status)**
+
+* A categorical ranking (often 1–5)
+* Lower numbers usually indicate **higher socioeconomic status**
+* Can correlate with health outcomes and access to care
+
+---
+
+### **MMSE (Mini-Mental State Examination)**
+
+* A widely used cognitive test score (range: **0–30**)
+* Higher scores = better cognitive function
+* Rough interpretation:
+
+  * 24–30 → normal
+  * 18–23 → mild impairment
+  * <18 → more severe impairment
+
+---
+
+### **CDR (Clinical Dementia Rating)**
+
+* Measures dementia severity
+* Typical values:
+
+  * 0 → no dementia
+  * 0.5 → mild
+  * 1 → moderate
+  * 2 → severe
+
+---
+
+### **eTIV (Estimated Total Intracranial Volume)**
+
+* Total volume inside the skull (in mm³)
+* Used to normalize brain volume measurements
+* Helps account for head size differences
+
+---
+
+### **nWBV (Normalized Whole Brain Volume)**
+
+* Brain volume as a **proportion of intracranial volume**
+* Lower values → more brain atrophy (often linked to dementia progression)
+
+---
+
+### **ASF (Atlas Scaling Factor)**
+
+* A scaling factor used during MRI processing
+* Adjusts individual brain scans to match a standard brain atlas
+* Inversely related to head size (larger heads → smaller ASF)
+
