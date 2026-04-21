@@ -10,7 +10,16 @@ load_dotenv()
 app = FastAPI()
 
 pipeline = joblib.load('dementia_predictor_pipeline.pkl')
-engine = create_engine(f"postgresql://postgres:{os.environ.get('POSTGRES_PASSWORD')}@localhost:5432/dementia_db")
+
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+if DATABASE_URL:
+    if DATABASE_URL.startswith("postgres://"):
+        DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+else:
+    DATABASE_URL = f"postgresql://postgres:{os.environ.get('POSTGRES_PASSWORD')}@localhost:5432/dementia_db"
+
+engine = create_engine(DATABASE_URL)
 
 class PatientData(BaseModel):
     gender: int
