@@ -27,7 +27,9 @@ if st.button("Predict"):
         "mmse":mmse
     }
     try:
-        response = requests.post(f"{os.environ.get('URL')}/predict", json=payload)
+        url = os.environ.get("BACKEND_URL", "http://127.0.0.1:8003")
+        response = requests.post(f"{url}/predict", json=payload)
+
         if response.status_code == 200:
             result = response.json()
             prediction = result['Prediction']

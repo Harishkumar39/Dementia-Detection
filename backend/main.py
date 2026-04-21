@@ -9,10 +9,8 @@ load_dotenv()
 
 app = FastAPI()
 
-model = joblib.load('../backend/ridge_classifier.pkl')
-scaler = joblib.load('../backend/scaler.pkl')
-
-engine = create_engine(f'postgresql://postgres:{os.environ.get("postgre_password")}@localhost:5432/dementia_db')
+pipeline = joblib.load('dementia_predictor_pipeline.pkl')
+engine = create_engine(f"postgresql://postgres:{os.environ.get('POSTGRES_PASSWORD')}@localhost:5432/dementia_db")
 
 class PatientData(BaseModel):
     gender: int
@@ -27,8 +25,8 @@ class PatientData(BaseModel):
 @app.post('/predict')
 def predict(data: PatientData):
     input_data = np.array([[data.gender, data.age, data.educ, data.ses, data.etiv, data.nwbv, data.asf, data.mmse]])
-    input_data = scaler.transform(input_data)
-    predicted = model.predict(input_data)
+    predicted = pipeline.predict(input_data)
+    result_val = int(predicted[0])
 
     with engine.connect() as conn:
         query = text("""
@@ -45,9 +43,9 @@ def predict(data: PatientData):
             "nwbv": data.nwbv,
             "asf": data.asf,
             "mmse": data.mmse,
-            "result": int(predicted),
+            "result": result_val,
             "status": "success"
         })
         conn.commit()
 
-    return {"Prediction": int(predicted[0]), "status":"success"}
+    return {"Prediction": result_val, "status":"success"}
