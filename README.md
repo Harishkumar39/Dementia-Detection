@@ -24,6 +24,8 @@ Batch Migration: Includes a custom ETL script to handle bulk insertion of 300+ h
 
 Schema Enforcement: Strict data validation using Pydantic models to ensure inference quality and database consistency.
 
+---
+
 ### **EDUC**
 
 * **Years of education** completed
@@ -65,22 +67,22 @@ Schema Enforcement: Strict data validation using Pydantic models to ensure infer
 
 ### **eTIV (Estimated Total Intracranial Volume)**
 
-* Total volume inside the skull (in mm³)
+* Total volume inside the skull (in mm³ and range 100-2200)
 * Used to normalize brain volume measurements
 * Helps account for head size differences
-
+* The volume might vary depending on the values you receive in more number of samples.
 ---
 
 ### **nWBV (Normalized Whole Brain Volume)**
 
-* Brain volume as a **proportion of intracranial volume**
+* Brain volume as a **proportion of intracranial volume** (range: **0.0–1.0**)
 * Lower values → more brain atrophy (often linked to dementia progression)
 
 ---
 
 ### **ASF (Atlas Scaling Factor)**
 
-* A scaling factor used during MRI processing
+* A scaling factor used during MRI processing (range: **0.0–2.0**)
 * Adjusts individual brain scans to match a standard brain atlas
 * Inversely related to head size (larger heads → smaller ASF)
-
+* The value of scaling factor might change. This is purely based on the data which I used.
