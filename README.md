@@ -4,7 +4,7 @@ A full-stack Machine Learning application designed to predict dementia status us
 
 ---
 
-**System Architecture**
+### **System Architecture**
 
 The system is built with a focus on scalability and data integrity:
 
@@ -18,9 +18,9 @@ Data Pipeline: A Jupyter-based ETL process that cleans and migrates legacy clini
 
 ---
 
-**Key Features**
+### **Key Features**
 
-Machine Learning Inference: Utilizes a RidgeClassifier to categorize dementia status based on MMSE, eTIV, nWBV, and other clinical metrics.
+Machine Learning Inference: Utilizes a best model from the pipeline to categorize dementia status based on MMSE, eTIV, nWBV, and other clinical metrics.
 
 Automated Logging: Every inference is automatically logged to the prediction_logs table, capturing both input features and the resulting prediction.
 
@@ -29,6 +29,8 @@ Batch Migration: Includes a custom ETL script to handle bulk insertion of 300+ h
 Schema Enforcement: Strict data validation using Pydantic models to ensure inference quality and database consistency.
 
 ---
+
+### **Medical terms from the Dataset**
 
 ### **EDUC**
 
